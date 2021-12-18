@@ -5,6 +5,9 @@ const allScore = document.querySelectorAll('.score')
 const changeColor1 = document.querySelector('.player--0');
 const changeColor2 = document.querySelector('.player--1');
 let items = document.getElementsByClassName('current-score');
+document.getElementsByClassName('dice')[0].style.visibility = 'hidden';
+let mainScore1 = intialScore;
+let mainScore2 = intialScore;
 
 for (const val of allScore) {
     val.textContent = intialScore;
@@ -13,6 +16,7 @@ let currentScorePlayer1 = 0;
 let currentScorePlayer2 = 0;
 
 document.querySelector(".btn--roll").addEventListener('click', function() {
+    document.getElementsByClassName('dice')[0].style.visibility = 'visible';
     let diceNumber = Math.trunc(Math.random() * 6) + 1;
 
     function changeImage(diceNumber) {
@@ -80,16 +84,26 @@ document.querySelector(".btn--roll").addEventListener('click', function() {
 })
 document.querySelector(".btn--hold").addEventListener('click', function() {
     if (changeColor1.classList.contains('player--active')) {
-        document.querySelector('#score--0').textContent = currentScorePlayer1;
-        currentScorePlayer1 = 0;
-        document.querySelector('#current--0').textContent = currentScorePlayer1;
-        changeColor1.classList.remove("player--active");
-        changeColor2.classList.add("player--active");
+        mainScore1 = mainScore1 + currentScorePlayer1;
+        if (mainScore1 < 100) {
+            document.querySelector('#score--0').textContent = mainScore1;
+            currentScorePlayer1 = 0;
+            document.querySelector('#current--0').textContent = currentScorePlayer1;
+            changeColor1.classList.remove("player--active");
+            changeColor2.classList.add("player--active");
+        } else {
+            changeColor1.classList.add("player--winner")
+        }
     } else {
-        document.querySelector('#score--1').textContent = currentScorePlayer2;
-        currentScorePlayer2 = 0;
-        document.querySelector('#current--1').textContent = currentScorePlayer2;
-        changeColor2.classList.remove("player--active");
-        changeColor1.classList.add("player--active");
+        mainScore2 = mainScore2 + currentScorePlayer2;
+        if (mainScore2 < 100) {
+            document.querySelector('#score--1').textContent = mainScore2;
+            currentScorePlayer2 = 0;
+            document.querySelector('#current--1').textContent = currentScorePlayer2;
+            changeColor2.classList.remove("player--active");
+            changeColor1.classList.add("player--active");
+        } else {
+            changeColor2.classList.add("player--winner")
+        }
     }
 })
