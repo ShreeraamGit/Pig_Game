@@ -19,9 +19,13 @@ document.querySelector(".btn--roll").addEventListener('click', function() {
         if (diceNumber === 1) {
             document.querySelector('.dice').src = "dice-1.png";
             if (changeColor1.classList.contains('player--active')) {
+                currentScorePlayer1 = 0;
+                items[0].textContent = currentScorePlayer1;
                 changeColor1.classList.remove("player--active");
                 changeColor2.classList.add("player--active");
             } else {
+                currentScorePlayer2 = 0;
+                items[1].textContent = currentScorePlayer2;
                 changeColor2.classList.remove("player--active");
                 changeColor1.classList.add("player--active");
             }
@@ -73,9 +77,19 @@ document.querySelector(".btn--roll").addEventListener('click', function() {
         }
     }
     changeImage(diceNumber);
-
 })
-
-document.querySelector(".btn--btn--hold").addEventListener('click', function() {
-
-        }
+document.querySelector(".btn--hold").addEventListener('click', function() {
+    if (changeColor1.classList.contains('player--active')) {
+        document.querySelector('#score--0').textContent = currentScorePlayer1;
+        currentScorePlayer1 = 0;
+        document.querySelector('#current--0').textContent = currentScorePlayer1;
+        changeColor1.classList.remove("player--active");
+        changeColor2.classList.add("player--active");
+    } else {
+        document.querySelector('#score--1').textContent = currentScorePlayer2;
+        currentScorePlayer2 = 0;
+        document.querySelector('#current--1').textContent = currentScorePlayer2;
+        changeColor2.classList.remove("player--active");
+        changeColor1.classList.add("player--active");
+    }
+})

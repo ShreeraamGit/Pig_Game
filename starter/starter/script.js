@@ -25,7 +25,9 @@ document.querySelector(".btn--roll").addEventListener('click', function() {
             }
         } else if (diceNumber === 2) {
             document.querySelector('.dice').src = "dice-2.png";
+            if (changeColor1.classList.contains('player--active')) {
 
+            }
         } else if (diceNumber === 3) {
             document.querySelector('.dice').src = "dice-3.png";
         } else if (diceNumber === 4) {
@@ -38,11 +40,3 @@ document.querySelector(".btn--roll").addEventListener('click', function() {
     }
     changeImage(diceNumber);
 })
-
-const allCurrent = document.querySelectorAll('.current-score');
-
-for (var i = 0; i < allCurrent.length; i++) {
-    let currentScore1 = allCurrent[i].textContent;
-    currentScore1 = 5;
-    console.log(currentScore1);
-}
