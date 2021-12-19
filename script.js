@@ -92,6 +92,7 @@ document.querySelector(".btn--hold").addEventListener('click', function() {
             changeColor1.classList.remove("player--active");
             changeColor2.classList.add("player--active");
         } else {
+            document.querySelector('#score--0').textContent = mainScore1;
             changeColor1.classList.add("player--winner")
         }
     } else {
@@ -103,7 +104,55 @@ document.querySelector(".btn--hold").addEventListener('click', function() {
             changeColor2.classList.remove("player--active");
             changeColor1.classList.add("player--active");
         } else {
+            document.querySelector('#score--1').textContent = mainScore2;
             changeColor2.classList.add("player--winner")
         }
+    }
+})
+
+document.querySelector(".btn--new").addEventListener('click', function() {
+    document.getElementsByClassName('dice')[0].style.visibility = 'hidden';
+    if (changeColor1.classList.contains('player--winner')) {
+        changeColor1.classList.remove('player--winner')
+        changeColor1.classList.add("player--active");
+        mainScore1 = 0;
+        mainScore2 = 0;
+        document.querySelector('#score--0').textContent = mainScore1;
+        document.querySelector('#score--1').textContent = mainScore2;
+        currentScorePlayer1 = 0;
+        currentScorePlayer2 = 0;
+        document.querySelector('#current--0').textContent = currentScorePlayer1;
+        document.querySelector('#current--1').textContent = currentScorePlayer2;
+    } else if (changeColor2.classList.contains('player--winner')) {
+        changeColor2.classList.remove('player--winner')
+        changeColor1.classList.add("player--active");
+        mainScore1 = 0;
+        mainScore2 = 0;
+        document.querySelector('#score--0').textContent = mainScore1;
+        document.querySelector('#score--1').textContent = mainScore2;
+        currentScorePlayer1 = 0;
+        currentScorePlayer2 = 0;
+        document.querySelector('#current--0').textContent = currentScorePlayer1;
+        document.querySelector('#current--1').textContent = currentScorePlayer2;
+    } else if (changeColor1.classList.contains('player--active')) {
+        mainScore1 = 0;
+        mainScore2 = 0;
+        document.querySelector('#score--0').textContent = mainScore1;
+        document.querySelector('#score--1').textContent = mainScore2;
+        currentScorePlayer1 = 0;
+        currentScorePlayer2 = 0;
+        document.querySelector('#current--0').textContent = currentScorePlayer1;
+        document.querySelector('#current--1').textContent = currentScorePlayer2;
+    } else {
+        changeColor2.classList.remove("player--active");
+        changeColor1.classList.add("player--active");
+        mainScore1 = 0;
+        mainScore2 = 0;
+        document.querySelector('#score--0').textContent = mainScore1;
+        document.querySelector('#score--1').textContent = mainScore2;
+        currentScorePlayer1 = 0;
+        currentScorePlayer2 = 0;
+        document.querySelector('#current--0').textContent = currentScorePlayer1;
+        document.querySelector('#current--1').textContent = currentScorePlayer2;
     }
 })
